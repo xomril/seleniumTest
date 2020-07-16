@@ -58,7 +58,21 @@ describe('TODO', () => {
         const sumOrder = await browser.findElement(By.xpath('//td[text()="' + getCurrentDate() + '"]//..//td[contains(text(),"$")]'))
         expect(sumOrder.getText()).toEqual(testdata.price)
     });
+
+    it('should search for Mac and verify all items are MAC 4 (verify by name)', async() =>{
+        await browser.findElement(By.xpath('//input[@name="search"]')).sendKeys('Mac' + '\n');
+        const items = await browser.findElements(By.xpath('//*[@class="product-thumb"]//a'));
+        items.forEach(async item =>{
+            const itemText = await item.getText();
+            if(itemText != ""){
+                console.log(itemText);
+                expect(itemText.indexOf('Mac') > -1).toBe(true);
+            }
+        })
+
+    })
 });
+
 
 const priceToNum = (price) => {
     return +price.split("\n")[0].match(/\d.+/g,"")

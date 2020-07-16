@@ -62,6 +62,17 @@ describe('TODO', () => {
         const sumOrder = yield protractor_1.browser.findElement(By.xpath('//td[text()="' + getCurrentDate() + '"]//..//td[contains(text(),"$")]'));
         expect(sumOrder.getText()).toEqual(testdata.price);
     }));
+    it('should search for Mac and verify all items are MAC 4 (verify by name)', () => __awaiter(void 0, void 0, void 0, function* () {
+        yield protractor_1.browser.findElement(By.xpath('//input[@name="search"]')).sendKeys('Mac' + '\n');
+        const items = yield protractor_1.browser.findElements(By.xpath('//*[@class="product-thumb"]//a'));
+        items.forEach((item) => __awaiter(void 0, void 0, void 0, function* () {
+            const itemText = yield item.getText();
+            if (itemText != "") {
+                console.log(itemText);
+                expect(itemText.indexOf('Mac') > -1).toBe(true);
+            }
+        }));
+    }));
 });
 const priceToNum = (price) => {
     return +price.split("\n")[0].match(/\d.+/g, "");
