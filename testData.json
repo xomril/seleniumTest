@@ -1,4 +1,7 @@
 {
     "email": "Omri+testdemo@alink.co.il",
-    "password": "123456"
+    "password": "123456",
+    "category": "Phones & PDAs",
+    "itemToBuy": "HTC Touch HD",
+    "price": "$105.00"
 }
